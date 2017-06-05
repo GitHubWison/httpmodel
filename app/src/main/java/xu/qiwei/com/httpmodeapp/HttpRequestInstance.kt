@@ -8,7 +8,10 @@ import xu.qiwei.com.httpmodel.HttpRequest
  */
 
 object HttpRequestInstance {
-     var httpRequest: HttpRequest
+    var httpRequest: HttpRequest
+    var httpRequestForTG: HttpRequest
+
+//    http://www.tngou.net/api/drug/classify
 
     init {
         val headers = Headers.Builder().add("Authorization", "Basic TWRzZC5QaGVwLkFwaTptZHNkLnBoZXAuYXBpLjIwMDUk")
@@ -18,15 +21,20 @@ object HttpRequestInstance {
         httpRequest = HttpRequest.Companion.Builder()
                 .setBaseUrlVoid("http://172.16.23.14:45200")
                 .setHeadersVoid(headers).build()
+        httpRequestForTG = HttpRequest.Companion.Builder().setBaseUrlVoid("http://www.tngou.net/").build()
+
     }
 
-    fun getInstance():HttpRequestInstance {
+    fun getInstance(): HttpRequestInstance {
         return this
 
     }
-    fun createClient():ApiClient
-    {
+
+    fun createClient(): ApiClient {
         return httpRequest.createClient(ApiClient::class.java)
+    }
+    fun createTGClient():ApiTGClient{
+        return httpRequestForTG.createClient(ApiTGClient::class.java)
     }
 
 }

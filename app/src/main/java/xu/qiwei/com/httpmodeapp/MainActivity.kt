@@ -17,24 +17,48 @@ class MainActivity : AppCompatActivity() {
         initViews()
 //        refreshData()
     }
-    private fun initViews(){
+
+    private fun initViews() {
         var testTextview = findViewById(R.id.test_textview) as TextView
         testTextview.setOnClickListener { _ ->
-            refreshData()
+            getDrugClassify()
         }
     }
 
+    private fun getDrugClassify() {
+//获得天狗药品分类
+        HttpRequestInstance.getInstance().createTGClient().getDrugClassify("drug")
+                .enqueue(TGCallback())
+        /*object : Callback<TGDataSource<List<DrugClassify>>> {
+                    override fun onFailure(call: Call<TGDataSource<List<DrugClassify>>>?, t: Throwable?) {
+
+                    }
+
+                    override fun onResponse(call: Call<TGDataSource<List<DrugClassify>>>?, response: Response<TGDataSource<List<DrugClassify>>>?) {
+                        if (response!=null) {
+                            var  body = response.body()
+                            if (body!=null) {
+                                var data = body.tngou
+                                if (data!=null) {
+                                    Log.e("datasize",data.size.toString())
+                                }
+                            }
+                        }
+                    }
+                }*/
+    }
+
     private fun refreshData() {
-        HttpRequestInstance.getInstance().createClient().login(LoginParam()).enqueue(object : Callback<DataSource<LoginResult>>{
+        HttpRequestInstance.getInstance().createClient().login(LoginParam()).enqueue(object : Callback<DataSource<LoginResult>> {
             override fun onFailure(call: Call<DataSource<LoginResult>>?, t: Throwable?) {
             }
 
             override fun onResponse(call: Call<DataSource<LoginResult>>?, response: Response<DataSource<LoginResult>>?) {
                 if (response != null) {
                     val body = response.body()
-                    if (body!=null) {
+                    if (body != null) {
                         val hosName = body.data?.hospitalName
-                        Log.e("hosName",hosName)
+                        Log.e("hosName", hosName)
                     }
 
                 }

@@ -1,5 +1,8 @@
 package xu.qiwei.com.httpmodeapp;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by xuqiwei on 17-6-7.
  */
@@ -16,6 +19,18 @@ public class Transfer {
         private String Patient_id="97c5adaa-387d-438c-a91a-4027e6d36bc6";
         private String TransferEndDate = "2017-06-07";
         private String TransferStartDate="1991-06-06";
+
+        public Map<String,String> generateMap(){
+            Map<String,String> param = new HashMap<>();
+            param.put("AppId",AppId);
+            param.put("NAME",NAME);
+            param.put("Patient_id",Patient_id);
+            param.put("TransferEndDate",TransferEndDate);
+            param.put("TransferStartDate",TransferStartDate);
+            return param;
+
+        }
+
     }
     /**
      * TransferPatientId : 0ddbb9da-fd90-495f-8311-d2f397048e6f

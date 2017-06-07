@@ -27,25 +27,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshData() {
-//        HttpRequestInstance.getInstance().createClient().login(LoginResult.LoginParams())
-//                .enqueue(DataCallBack(object : DataCallBack.HttpCallBackImpl<LoginResult>() {
-//                    override fun onSuccess(t: LoginResult?) {
-//                        super.onSuccess(t)
-//                        if (t != null) {
-//                            netResult(t.hospitalName)
-//                        }
-//                    }
-//                    override fun onNetFinish(isSuccess: Boolean, code: String?) {
-//                        super.onNetFinish(isSuccess, code)
-//                        netResult(isSuccess.toString() + "=" + code)
-//                    }
-//                }))
-        HttpRequestInstance.getInstance().createClient().getTransFerList(Transfer.TransferParam())
+        HttpRequestInstance.getInstance().createClient().getTransFerList(Transfer.TransferParam().generateMap())
                 .enqueue(DataCallBack(object : DataCallBack.HttpCallBackImpl<List<Transfer>>(){
                     override fun onSuccess(t: List<Transfer>?) {
                         super.onSuccess(t)
                         if (t != null) {
                             netResult(t.size.toString()+"")
+                        }
+                    }
+
+                    override fun onServerError(msg: String?) {
+                        super.onServerError(msg)
+                        if (msg != null) {
+                            netResult(msg)
                         }
                     }
                 }))

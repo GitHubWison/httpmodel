@@ -33,8 +33,8 @@ object HttpRequestInstance {
     fun createClient(): ApiClient {
         return httpRequest.createClient(ApiClient::class.java)
     }
-    fun createTGClient():ApiTGClient{
-        return httpRequestForTG.createClient(ApiTGClient::class.java)
-    }
+//    fun createTGClient():ApiTGClient{
+//        return httpRequestForTG.createClient(ApiTGClient::class.java)
+//    }
 
 }

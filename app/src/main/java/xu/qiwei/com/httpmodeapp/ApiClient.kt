@@ -19,5 +19,7 @@ interface ApiClient
     ): Call<JsonElement>
 
     @POST("/api/Public/CheckUserIsValidWithCarInfo")
-    fun login(@Body loginParam: LoginParam): Call<DataSource<LoginResult>>
+    fun login(@Body loginParam: LoginResult.LoginParams): Call<DataSource<LoginResult>>
+    @GET("/api/MobileTransfer/GetTransferList")
+    fun getTransFerList(transferParam: Transfer.TransferParam):Call<DataSource<List<Transfer>>>
 }

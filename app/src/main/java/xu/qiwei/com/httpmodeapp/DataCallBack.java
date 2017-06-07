@@ -1,5 +1,7 @@
 package xu.qiwei.com.httpmodeapp;
 
+import android.util.Log;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,10 +38,11 @@ public class DataCallBack<T> implements Callback<DataSource<T>>{
             netError = "网络错误，原因不详";
         }
         httpCallBack.onNetError(netError);
-        netEnd(false,"");
+        netEnd(false,netError);
     }
     private void netEnd(boolean isNetSuccess,String code){
         httpCallBack.onNetFinish(isNetSuccess,code);
+        Log.e("netstatus===","isNetSuccess:"+isNetSuccess+"==code:"+code);
     }
     public interface HttpCallBack<T>{
          void onSuccess(T t);

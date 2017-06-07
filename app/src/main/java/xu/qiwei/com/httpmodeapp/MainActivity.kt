@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         var testTextview = findViewById(R.id.test_textview) as TextView
         testTextview.setOnClickListener { _ ->
-//            getDrugClassify()
+            //            getDrugClassify()
             refreshData()
         }
     }
@@ -27,23 +27,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshData() {
-        HttpRequestInstance.getInstance().createClient().login(LoginParam())
-                .enqueue(DataCallBack(object : DataCallBack.HttpCallBackImpl<LoginResult>() {
-            override fun onSuccess(t: LoginResult?) {
-                super.onSuccess(t)
-                if (t != null) {
-                    netResult(t.hospitalName)
-                }
-            }
-
-            override fun onNetFinish(isSuccess: Boolean, code: String?) {
-                super.onNetFinish(isSuccess, code)
-                netResult(isSuccess.toString()+"="+code)
-            }
-        }))
+//        HttpRequestInstance.getInstance().createClient().login(LoginResult.LoginParams())
+//                .enqueue(DataCallBack(object : DataCallBack.HttpCallBackImpl<LoginResult>() {
+//                    override fun onSuccess(t: LoginResult?) {
+//                        super.onSuccess(t)
+//                        if (t != null) {
+//                            netResult(t.hospitalName)
+//                        }
+//                    }
+//                    override fun onNetFinish(isSuccess: Boolean, code: String?) {
+//                        super.onNetFinish(isSuccess, code)
+//                        netResult(isSuccess.toString() + "=" + code)
+//                    }
+//                }))
+        HttpRequestInstance.getInstance().createClient().getTransFerList(Transfer.TransferParam())
+                .enqueue(DataCallBack(object : DataCallBack.HttpCallBackImpl<List<Transfer>>(){
+                    override fun onSuccess(t: List<Transfer>?) {
+                        super.onSuccess(t)
+                        if (t != null) {
+                            netResult(t.size.toString()+"")
+                        }
+                    }
+                }))
     }
-    private fun netResult(msg:String){
-        Log.e("MainActivitylog",msg+"")
+
+    private fun netResult(msg: String) {
+        Log.e("MainActivitylog", msg + "")
     }
 
 }

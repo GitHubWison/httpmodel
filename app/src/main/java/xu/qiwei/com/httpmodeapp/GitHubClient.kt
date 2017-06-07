@@ -2,9 +2,7 @@ package xu.qiwei.com.httpmodeapp
 
 import com.google.gson.JsonElement
 import retrofit2.Call
-import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Path
 
 /**
@@ -17,6 +15,4 @@ interface GitHubClient {
             @Path("drug") user: String
     ): Call<JsonElement>
 
-    @POST("/api/Public/CheckUserIsValidWithCarInfo")
-    fun login(@Body loginParam: LoginParam): Call<JsonElement>
 }

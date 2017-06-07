@@ -20,7 +20,8 @@ object HttpRequestInstance {
                 .add("RequestSource", "VmVoaWNsZUFwcA==").build()
         httpRequest = HttpRequest.Companion.Builder()
                 .setBaseUrlVoid("http://172.16.23.14:45200")
-                .setHeadersVoid(headers).build()
+                .setHeadersVoid(headers)
+                .build()
         httpRequestForTG = HttpRequest.Companion.Builder().setBaseUrlVoid("http://www.tngou.net/").build()
 
     }
@@ -33,8 +34,5 @@ object HttpRequestInstance {
     fun createClient(): ApiClient {
         return httpRequest.createClient(ApiClient::class.java)
     }
-//    fun createTGClient():ApiTGClient{
-//        return httpRequestForTG.createClient(ApiTGClient::class.java)
-//    }
 
 }

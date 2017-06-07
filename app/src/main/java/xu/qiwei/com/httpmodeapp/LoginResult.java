@@ -217,4 +217,20 @@ public class LoginResult {
             this.Url = Url;
         }
     }
+    public static class LoginParams{
+
+        /**
+         * AppId : PreHospitalCare
+         * LoginName : pad
+         * Password : 202CB962AC59075B964B07152D234B70
+         * PlateNumber : 6IuPRSAwQTEyNQ==
+         */
+
+        private String AppId = "PreHospitalCare";
+        private String LoginName = "pad";
+        private String Password = "202CB962AC59075B964B07152D234B70";
+        private String PlateNumber = "6IuPRSAwQTEyNQ==";
+
+    }
+
 }

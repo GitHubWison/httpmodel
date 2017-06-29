@@ -6,4 +6,8 @@ package xu.qiwei.com.httpmodeapp;
 
 public class TestCode {
     private int test;
+
+//    public TestCode() {
+//        new Observable<Response>()
+//    }
 }

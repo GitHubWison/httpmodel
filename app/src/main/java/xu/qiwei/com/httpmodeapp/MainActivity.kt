@@ -9,6 +9,8 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.Response
+
 
 //http://www.tngou.net/api/drug/classify
 class MainActivity : AppCompatActivity() {
@@ -37,16 +39,17 @@ class MainActivity : AppCompatActivity() {
         HttpRequestInstanceV2
                 .retrofit
                 .create(ApiClient::class.java)
-                .loginV2("pad", "202CB962AC59075B964B07152D234B70","6IuPRSAwQTEyNQ==")
+                .loginV2("pad", "202CB962AC59075B964B07152D234B70", "6IuPRSAwQTEyNQ==")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<JsonElement> {
+                .subscribe(object : Observer<Response<JsonElement>> {
                     override fun onSubscribe(d: Disposable) {
                         "onSubscribe".printLog()
                     }
 
-                    override fun onNext(list: JsonElement) {
-                        list.toString().printLog()
+                    override fun onNext(list: Response<JsonElement>) {
+                        var headers = list.headers()
+                        list.body().toString().printLog()
                     }
 
                     override fun onError(e: Throwable) {

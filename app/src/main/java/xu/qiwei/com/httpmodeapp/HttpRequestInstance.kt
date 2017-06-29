@@ -19,7 +19,7 @@ object HttpRequestInstance {
                 .add("LoginName", "amp6eDE=")
                 .add("RequestSource", "VmVoaWNsZUFwcA==").build()
         httpRequest = HttpRequest.Companion.Builder()
-                .setBaseUrlVoid("http://172.16.23.14:45200")
+                .setBaseUrlVoid("http://172.16.23.14:4500")
                 .setHeadersVoid(headers)
                 .build()
         httpRequestForTG = HttpRequest.Companion.Builder().setBaseUrlVoid("http://www.tngou.net/").build()
